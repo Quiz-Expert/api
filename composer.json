@@ -1,0 +1,64 @@
+{
+    "name": "quiz-expert/api",
+    "type": "project",
+    "description": "Quiz-Expert api",
+    "license": "MIT",
+    "require": {
+        "php": "^8.0",
+        "ext-intl": "*",
+        "ext-pdo": "*",
+        "fideloper/proxy": "^4.4",
+        "fruitcake/laravel-cors": "^2.0",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "laravel/framework": "^8.12",
+        "laravel/tinker": "^2.5"
+    },
+    "require-dev": {
+        "facade/ignition": "^2.5",
+        "fakerphp/faker": "^1.9.1",
+        "blumilksoftware/codestyle": "^0.1.0",
+        "mockery/mockery": "^1.4.2",
+        "nunomaduro/collision": "^5.0",
+        "phpunit/phpunit": "^9.3.3"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Quiz\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "ecs": "./vendor/bin/ecs check",
+        "ecs-fix": "./vendor/bin/ecs check --fix",
+        "phpunit":"./vendor/bin/phpunit",
+        "phpunit-feature":"./vendor/bin/phpunit --testsuite Feature",
+        "phpunit-unit ":"./vendor/bin/phpunit --testsuite Unit",
+        "check": [
+            "composer ecs",
+            "composer phpunit-unit",
+            "composer phpunit-feature"
+        ]
+    }
+}
