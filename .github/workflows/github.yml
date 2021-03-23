@@ -1,0 +1,40 @@
+name: Build & Test the application
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Run the Docker containers
+        run: docker-compose -f docker-compose-testing.yml up -d
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        run: docker-compose -f docker-compose-testing.yml run php composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Run code style checker
+        run: docker-compose -f docker-compose-testing.yml run php composer ecs
+
+      - name: Run unit tests
+        run: docker-compose -f docker-compose-testing.yml run php composer tests-unit
+
+      - name: Run feature tests
+        run: docker-compose -f docker-compose-testing.yml run php composer tests-feature
