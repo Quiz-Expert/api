@@ -55,13 +55,13 @@
         ],
         "ecs": "./vendor/bin/ecs check",
         "ecs-fix": "./vendor/bin/ecs check --fix",
-        "phpunit":"./vendor/bin/phpunit",
-        "phpunit-feature":"./vendor/bin/phpunit --testsuite Feature",
-        "phpunit-unit ":"./vendor/bin/phpunit --testsuite Unit",
+        "tests":"./vendor/bin/phpunit",
+        "tests-feature":"./vendor/bin/phpunit --testsuite Feature",
+        "tests-unit ":"./vendor/bin/phpunit --testsuite Unit",
         "check": [
             "composer ecs",
-            "composer phpunit-unit",
-            "composer phpunit-feature"
+            "composer tests-unit",
+            "composer tests-feature"
         ]
     }
 }
