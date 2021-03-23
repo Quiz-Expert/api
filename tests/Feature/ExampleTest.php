@@ -10,7 +10,7 @@ class ExampleTest extends TestCase
 {
     public function testBasicTest(): void
     {
-        $response = $this->get("/");
+        $response = $this->get("api");
 
         $response->assertStatus(200);
     }

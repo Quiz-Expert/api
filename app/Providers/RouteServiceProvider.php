@@ -34,6 +34,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->routes(
             function (Router $router): void {
                 $router->middleware("api")
+                    ->prefix("api")
                     ->group(base_path("routes/api.php"));
             }
         );

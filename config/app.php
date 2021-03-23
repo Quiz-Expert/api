@@ -26,6 +26,7 @@ use Illuminate\Validation\ValidationServiceProvider;
 use Illuminate\View\ViewServiceProvider;
 use Quiz\Providers\AppServiceProvider;
 use Quiz\Providers\RouteServiceProvider;
+use Quiz\Providers\TelescopeServiceProvider;
 
 return [
     "name" => env("APP_NAME", "Laravel"),
@@ -63,6 +64,7 @@ return [
         ValidationServiceProvider::class,
         ViewServiceProvider::class,
         RouteServiceProvider::class,
+        TelescopeServiceProvider::class,
         AppServiceProvider::class,
     ],
 ];
