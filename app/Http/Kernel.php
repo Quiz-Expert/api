@@ -23,12 +23,14 @@ use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Routing\Middleware\ValidateSignature;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Quiz\Http\Middleware\ForceJsonResponse;
 use Quiz\Http\Middleware\TrimStrings;
 use Quiz\Http\Middleware\TrustProxies;
 
 class Kernel extends HttpKernel
 {
     protected $middleware = [
+        ForceJsonResponse::class,
         TrustProxies::class,
         HandleCors::class,
         PreventRequestsDuringMaintenance::class,
