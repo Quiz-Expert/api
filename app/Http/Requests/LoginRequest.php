@@ -10,7 +10,7 @@ use Illuminate\Foundation\Http\FormRequest;
  * @property string $email
  * @property string $password
  */
-class LoginFormRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     public function rules(): array
     {

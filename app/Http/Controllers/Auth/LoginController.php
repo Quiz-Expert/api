@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Quiz\Http\Controllers\Controller;
-use Quiz\Http\Requests\LoginFormRequest;
+use Quiz\Http\Requests\LoginRequest;
 use Quiz\Models\User;
 
 class LoginController extends Controller
@@ -17,7 +17,7 @@ class LoginController extends Controller
     /**
      * @throws ValidationException
      */
-    public function __invoke(LoginFormRequest $request): JsonResponse
+    public function __invoke(LoginRequest $request): JsonResponse
     {
         /** @var User $user */
         $user = User::query()

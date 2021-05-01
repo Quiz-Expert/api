@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Quiz\Models\Category;
+
 return [
     "default" => env("FILESYSTEM_DRIVER", "local"),
     "disks" => [
@@ -18,5 +20,6 @@ return [
     ],
     "links" => [
         public_path("storage") => storage_path("app/public"),
+        public_path(Category::UPLOAD_DIRECTORY) => storage_path("app/" . Category::UPLOAD_DIRECTORY),
     ],
 ];
