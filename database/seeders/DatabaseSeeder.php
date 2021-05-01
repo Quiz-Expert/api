@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 use Quiz\Models\Category;
+use Quiz\Models\Mistake;
 use Quiz\Models\Question;
 use Quiz\Models\Suggestion;
 use Quiz\Models\User;
@@ -28,6 +29,17 @@ class DatabaseSeeder extends Seeder
             ]))
             ->state(new Sequence(fn () => [
                 "category_id" => $categories->random(),
+            ]))
+            ->create();
+
+        $questions = Question::all();
+
+        Mistake::factory(10)
+            ->state(new Sequence(fn () => [
+                "user_id" => $users->random(),
+            ]))
+            ->state(new Sequence(fn () => [
+                "question_id" => $questions->random(),
             ]))
             ->create();
     }
