@@ -8,6 +8,7 @@ use Quiz\Http\Controllers\Auth\LogoutController;
 use Quiz\Http\Controllers\Auth\RegisterController;
 use Quiz\Http\Controllers\Auth\UserController;
 use Quiz\Http\Controllers\CategoryController;
+use Quiz\Http\Controllers\MistakeController;
 use Quiz\Http\Controllers\QuestionController;
 use Quiz\Http\Controllers\SuggestionController;
 use Quiz\Http\Controllers\UploadController;
@@ -44,4 +45,9 @@ Route::middleware("auth:sanctum")->group(function (): void {
     Route::get("suggestions/{suggestion}", [SuggestionController::class, "show"]);
     Route::post("suggestions/{suggestion}/accept", [SuggestionController::class, "accept"]);
     Route::post("suggestions/{suggestion}/reject", [SuggestionController::class, "reject"]);
+
+    Route::get("mistakes", [MistakeController::class, "index"]);
+    Route::post("mistakes", [MistakeController::class, "store"]);
+    Route::get("mistakes/{mistake}", [MistakeController::class, "show"]);
+    Route::post("mistakes/{mistake}/close", [MistakeController::class, "close"]);
 });

@@ -38,4 +38,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Suggestion::class);
     }
+
+    public function mistakes(): HasMany
+    {
+        return $this->hasMany(Mistake::class);
+    }
 }
