@@ -7,7 +7,7 @@ namespace Quiz\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Quiz\Http\Controllers\Controller;
-use Quiz\Http\Resources\CurrentUserResource;
+use Quiz\Http\Resources\User\CurrentUserResource;
 
 class UserController extends Controller
 {

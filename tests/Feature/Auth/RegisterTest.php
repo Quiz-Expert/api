@@ -6,8 +6,8 @@ namespace Tests\Feature\Auth;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Symfony\Component\HttpFoundation\Response;
-use Tests\CreatesUsers;
 use Tests\TestCase;
+use Tests\Traits\CreatesUsers;
 
 class RegisterTest extends TestCase
 {

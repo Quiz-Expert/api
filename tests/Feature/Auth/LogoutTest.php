@@ -6,8 +6,8 @@ namespace Tests\Feature\Auth;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
-use Tests\CreatesUsers;
 use Tests\TestCase;
+use Tests\Traits\CreatesUsers;
 
 class LogoutTest extends TestCase
 {
@@ -16,7 +16,7 @@ class LogoutTest extends TestCase
 
     public function testUserCanLogout(): void
     {
-        $user = $this->createUser("test@example.com");
+        $user = $this->createUser();
 
         Sanctum::actingAs($user);
 
@@ -27,7 +27,7 @@ class LogoutTest extends TestCase
 
     public function testUserCannotLogutWhenUnauthenticated(): void
     {
-        $this->createUser("test@example.com");
+        $this->createUser();
 
         $response = $this->post("auth/logout");
 

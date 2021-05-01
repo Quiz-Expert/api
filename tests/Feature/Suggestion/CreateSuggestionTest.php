@@ -2,24 +2,30 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Question;
+namespace Tests\Feature\Suggestion;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
 use Quiz\Models\Question;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 use Tests\Traits\CreatesCategories;
+use Tests\Traits\CreatesUsers;
 
-class CreateQuestionTest extends TestCase
+class CreateSuggestionTest extends TestCase
 {
     use RefreshDatabase;
     use CreatesCategories;
+    use CreatesUsers;
 
-    public function testUserCanCreateQuestionWithProperData(): void
+    public function testUserCanCreateSuggestionWithProperData(): void
     {
+        $user = $this->createUser();
         $category = $this->createCategory();
 
-        $response = $this->post("questions", [
+        Sanctum::actingAs($user);
+
+        $response = $this->post("suggestions", [
             "text" => "Lorem ipsum",
             "answer_a" => "answer a",
             "answer_b" => "answer b",
@@ -32,11 +38,14 @@ class CreateQuestionTest extends TestCase
         $response->assertSuccessful();
     }
 
-    public function testUserCannotCreateQuestionWithValidationErrors(): void
+    public function testUserCannotCreateSuggestionWithValidationErrors(): void
     {
+        $user = $this->createUser();
         $category = $this->createCategory();
 
-        $response = $this->post("questions", [
+        Sanctum::actingAs($user);
+
+        $response = $this->post("suggestions", [
             "text" => "Lorem ipsum",
             "answer_a" => "answer a",
             "answer_b" => "answer b",
@@ -48,11 +57,14 @@ class CreateQuestionTest extends TestCase
         $response->assertJsonValidationErrors(["answer_c", "answer_d", "good_answer"]);
     }
 
-    public function testUserCannotCreateQuestionForNonExistingCategory(): void
+    public function testUserCannotCreateSuggestionForNonExistingCategory(): void
     {
+        $user = $this->createUser();
         $nonExistingCategoryId = 156;
 
-        $response = $this->post("questions", [
+        Sanctum::actingAs($user);
+
+        $response = $this->post("suggestions", [
             "text" => "Lorem ipsum",
             "answer_a" => "answer a",
             "answer_b" => "answer b",

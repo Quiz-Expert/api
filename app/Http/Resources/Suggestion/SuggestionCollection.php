@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Quiz\Http\Resources;
+namespace Quiz\Http\Resources\Suggestion;
 
-class CategoryCollection extends PaginatedCollection
+use Quiz\Http\Resources\PaginatedCollection;
+
+class SuggestionCollection extends PaginatedCollection
 {
     public function toArray($request): array
     {

@@ -9,13 +9,11 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Quiz\Models\Category;
 use Symfony\Component\HttpFoundation\Response;
-use Tests\CreatesUsers;
 use Tests\TestCase;
 
 class IconUploadTest extends TestCase
 {
     use RefreshDatabase;
-    use CreatesUsers;
 
     public function testUserCanUploadIcon(): void
     {

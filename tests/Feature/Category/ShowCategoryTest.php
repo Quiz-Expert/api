@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Tests\Feature\Category;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\CreatesCategories;
 use Tests\TestCase;
+use Tests\Traits\CreatesCategories;
 
 class ShowCategoryTest extends TestCase
 {

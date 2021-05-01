@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Tests\Feature\Question;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\CreatesCategories;
-use Tests\CreatesQuestions;
 use Tests\TestCase;
+use Tests\Traits\CreatesCategories;
+use Tests\Traits\CreatesQuestions;
 
 class IndexQuestionTest extends TestCase
 {

@@ -7,8 +7,8 @@ namespace Tests\Feature\Question;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Quiz\Models\Question;
 use Symfony\Component\HttpFoundation\Response;
-use Tests\CreatesQuestions;
 use Tests\TestCase;
+use Tests\Traits\CreatesQuestions;
 
 class UpdateQuestionTest extends TestCase
 {
