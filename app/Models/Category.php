@@ -25,11 +25,7 @@ class Category extends Model
 
     public const UPLOAD_DIRECTORY = "icons";
 
-    protected $fillable = [
-        "name",
-        "description",
-        "icon",
-    ];
+    protected $guarded = [];
 
     public function questions(): HasMany
     {

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Tests\Feature\Question;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\CreatesQuestions;
 use Tests\TestCase;
+use Tests\Traits\CreatesQuestions;
 
 class ShowQuestionTest extends TestCase
 {

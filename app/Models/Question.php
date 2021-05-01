@@ -30,15 +30,7 @@ class Question extends Model
     public const ANSWER_C = "c";
     public const ANSWER_D = "d";
 
-    protected $fillable = [
-        "text",
-        "answer_a",
-        "answer_b",
-        "answer_c",
-        "answer_d",
-        "good_answer",
-        "category_id",
-    ];
+    protected $guarded = [];
 
     public static function possibleAnswers(): array
     {
@@ -53,5 +45,22 @@ class Question extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public static function createFromSuggestion(Suggestion $suggestion): static
+    {
+        $question = new static([
+            "text" => $suggestion->text,
+            "answer_a" => $suggestion->answer_a,
+            "answer_b" => $suggestion->answer_b,
+            "answer_c" => $suggestion->answer_c,
+            "answer_d" => $suggestion->answer_d,
+            "good_answer" => $suggestion->good_answer,
+            "category_id" => $suggestion->category_id,
+        ]);
+
+        $question->save();
+
+        return $question;
     }
 }

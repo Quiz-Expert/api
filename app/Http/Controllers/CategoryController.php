@@ -8,8 +8,8 @@ use Exception;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 use Quiz\Http\Requests\CategoryRequest;
-use Quiz\Http\Resources\CategoryCollection;
-use Quiz\Http\Resources\CategoryResource;
+use Quiz\Http\Resources\Category\CategoryCollection;
+use Quiz\Http\Resources\Category\CategoryResource;
 use Quiz\Http\Resources\PaginatedCollection;
 use Quiz\Models\Category;
 
@@ -22,7 +22,7 @@ class CategoryController extends Controller
         return new CategoryCollection($categories);
     }
 
-    public function create(CategoryRequest $request): JsonResource
+    public function store(CategoryRequest $request): JsonResource
     {
         $category = Category::query()->create($request->getData());
 

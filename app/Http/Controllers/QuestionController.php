@@ -10,8 +10,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
 use Quiz\Http\Requests\QuestionRequest;
-use Quiz\Http\Resources\QuestionCollection;
-use Quiz\Http\Resources\QuestionResource;
+use Quiz\Http\Resources\Question\QuestionCollection;
+use Quiz\Http\Resources\Question\QuestionResource;
 use Quiz\Models\Question;
 
 class QuestionController extends Controller
@@ -27,7 +27,7 @@ class QuestionController extends Controller
         return new QuestionCollection($questionQuery->paginate());
     }
 
-    public function create(QuestionRequest $request): JsonResource
+    public function store(QuestionRequest $request): JsonResource
     {
         $question = Question::query()->create($request->getData());
 

@@ -6,8 +6,8 @@ namespace Tests\Feature\Category;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Symfony\Component\HttpFoundation\Response;
-use Tests\CreatesCategories;
 use Tests\TestCase;
+use Tests\Traits\CreatesCategories;
 
 class UpdateCategoryTest extends TestCase
 {

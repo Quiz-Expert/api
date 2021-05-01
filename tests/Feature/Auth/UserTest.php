@@ -6,9 +6,9 @@ namespace Tests\Feature\Auth;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
-use Quiz\Http\Resources\CurrentUserResource;
-use Tests\CreatesUsers;
+use Quiz\Http\Resources\User\CurrentUserResource;
 use Tests\TestCase;
+use Tests\Traits\CreatesUsers;
 
 class UserTest extends TestCase
 {
@@ -17,7 +17,7 @@ class UserTest extends TestCase
 
     public function testUserCanGetHisInformation(): void
     {
-        $user = $this->createUser("test@example.com");
+        $user = $this->createUser();
         $expectedResponse = (new CurrentUserResource($user))->response();
 
         Sanctum::actingAs($user);

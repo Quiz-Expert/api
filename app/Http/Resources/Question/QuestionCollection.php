@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Quiz\Http\Resources;
+namespace Quiz\Http\Resources\Question;
+
+use Quiz\Http\Resources\PaginatedCollection;
 
 class QuestionCollection extends PaginatedCollection
 {

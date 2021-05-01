@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Quiz\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -23,13 +24,7 @@ class User extends Authenticatable
     use HasApiTokens;
     use Notifiable;
 
-    protected $fillable = [
-        "name",
-        "email",
-        "avatar",
-        "password",
-        "is_admin",
-    ];
+    protected $guarded = [];
 
     protected $hidden = [
         "password",
@@ -38,4 +33,9 @@ class User extends Authenticatable
     protected $casts = [
         "is_admin" => "boolean",
     ];
+
+    public function suggestions(): HasMany
+    {
+        return $this->hasMany(Suggestion::class);
+    }
 }
