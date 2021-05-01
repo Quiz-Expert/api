@@ -11,7 +11,7 @@ use Illuminate\Foundation\Http\FormRequest;
  * @property string $name
  * @property string $password
  */
-class RegisterFormRequest extends FormRequest
+class RegisterRequest extends FormRequest
 {
     public function rules(): array
     {

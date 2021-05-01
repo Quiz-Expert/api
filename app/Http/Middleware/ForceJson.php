@@ -7,7 +7,7 @@ namespace Quiz\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class ForceJsonResponse
+class ForceJson
 {
     public function handle(Request $request, Closure $next)
     {

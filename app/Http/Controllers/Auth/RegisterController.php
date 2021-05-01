@@ -8,12 +8,12 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Quiz\Http\Controllers\Controller;
-use Quiz\Http\Requests\RegisterFormRequest;
+use Quiz\Http\Requests\RegisterRequest;
 use Quiz\Models\User;
 
 class RegisterController extends Controller
 {
-    public function __invoke(RegisterFormRequest $request): JsonResponse
+    public function __invoke(RegisterRequest $request): JsonResponse
     {
         /** @var User $user */
         $user = User::query()
