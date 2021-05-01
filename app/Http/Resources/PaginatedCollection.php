@@ -10,6 +10,10 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class PaginatedCollection extends ResourceCollection
 {
+    public function toResponse($request): JsonResponse
+    {
+        return JsonResource::toResponse($request);
+    }
     protected function paginationData(): array
     {
         return [
@@ -19,10 +23,5 @@ class PaginatedCollection extends ResourceCollection
             "current_page" => $this->currentPage(),
             "total_pages" => $this->lastPage(),
         ];
-    }
-
-    public function toResponse($request): JsonResponse
-    {
-        return JsonResource::toResponse($request);
     }
 }

@@ -14,12 +14,12 @@ return [
         "public" => [
             "driver" => "local",
             "root" => storage_path("app/public"),
-            "url" => env("APP_URL")."/storage",
+            "url" => env("APP_URL") . "/storage",
             "visibility" => "public",
         ],
     ],
     "links" => [
         public_path("storage") => storage_path("app/public"),
-        public_path(Category::UPLOAD_DIRECTORY) => storage_path("app/".Category::UPLOAD_DIRECTORY),
+        public_path(Category::UPLOAD_DIRECTORY) => storage_path("app/" . Category::UPLOAD_DIRECTORY),
     ],
 ];

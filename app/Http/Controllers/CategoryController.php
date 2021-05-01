@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Quiz\Http\Controllers;
 
-use Quiz\Http\Resources\PaginatedCollection;
 use Exception;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 use Quiz\Http\Requests\CategoryRequest;
 use Quiz\Http\Resources\CategoryCollection;
 use Quiz\Http\Resources\CategoryResource;
+use Quiz\Http\Resources\PaginatedCollection;
 use Quiz\Models\Category;
 
 class CategoryController extends Controller
