@@ -14,6 +14,7 @@ class PaginatedCollection extends ResourceCollection
     {
         return JsonResource::toResponse($request);
     }
+
     protected function paginationData(): array
     {
         return [

@@ -43,4 +43,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Mistake::class);
     }
+
+    public function receivesBroadcastNotificationsOn(): string
+    {
+        return "notifications.{$this->id}";
+    }
 }

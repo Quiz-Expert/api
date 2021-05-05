@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Auth\AuthServiceProvider;
 use Illuminate\Auth\Passwords\PasswordResetServiceProvider;
-use Illuminate\Broadcasting\BroadcastServiceProvider;
+use Illuminate\Broadcasting\BroadcastServiceProvider as LaravelBroadcastServiceProvider;
 use Illuminate\Bus\BusServiceProvider;
 use Illuminate\Cache\CacheServiceProvider;
 use Illuminate\Cookie\CookieServiceProvider;
@@ -25,6 +25,7 @@ use Illuminate\Translation\TranslationServiceProvider;
 use Illuminate\Validation\ValidationServiceProvider;
 use Illuminate\View\ViewServiceProvider;
 use Quiz\Providers\AppServiceProvider;
+use Quiz\Providers\BroadcastServiceProvider;
 use Quiz\Providers\RouteServiceProvider;
 use Quiz\Providers\TelescopeServiceProvider;
 
@@ -42,7 +43,7 @@ return [
     "cipher" => "AES-256-CBC",
     "providers" => [
         AuthServiceProvider::class,
-        BroadcastServiceProvider::class,
+        LaravelBroadcastServiceProvider::class,
         BusServiceProvider::class,
         CacheServiceProvider::class,
         ConsoleSupportServiceProvider::class,
@@ -66,5 +67,6 @@ return [
         RouteServiceProvider::class,
         TelescopeServiceProvider::class,
         AppServiceProvider::class,
+        BroadcastServiceProvider::class,
     ],
 ];
