@@ -30,18 +30,6 @@ Route::prefix("upload")->group(function (): void {
 });
 
 Route::middleware("auth:sanctum")->group(function (): void {
-    Route::get("categories", [CategoryController::class, "index"]);
-    Route::post("categories", [CategoryController::class, "store"]);
-    Route::get("categories/{category}", [CategoryController::class, "show"]);
-    Route::put("categories/{category}", [CategoryController::class, "update"]);
-    Route::delete("categories/{category}", [CategoryController::class, "delete"]);
-
-    Route::get("questions", [QuestionController::class, "index"]);
-    Route::post("questions", [QuestionController::class, "store"]);
-    Route::get("questions/{question}", [QuestionController::class, "show"]);
-    Route::put("questions/{question}", [QuestionController::class, "update"]);
-    Route::delete("questions/{question}", [QuestionController::class, "delete"]);
-
     Route::get("suggestions", [SuggestionController::class, "index"]);
     Route::post("suggestions", [SuggestionController::class, "store"]);
     Route::get("suggestions/{suggestion}", [SuggestionController::class, "show"]);
@@ -56,6 +44,19 @@ Route::middleware("auth:sanctum")->group(function (): void {
     Route::get("notifications", [NotificationController::class, "index"]);
     Route::post("notifications/message", [NotificationController::class, "message"]);
 });
+
+Route::get("categories", [CategoryController::class, "index"]);
+Route::post("categories", [CategoryController::class, "store"]);
+Route::get("categories/{category}", [CategoryController::class, "show"]);
+Route::put("categories/{category}", [CategoryController::class, "update"]);
+Route::delete("categories/{category}", [CategoryController::class, "delete"]);
+
+Route::get("questions", [QuestionController::class, "index"]);
+Route::post("questions", [QuestionController::class, "store"]);
+Route::get("questions/{question}", [QuestionController::class, "show"]);
+Route::put("questions/{question}", [QuestionController::class, "update"]);
+Route::delete("questions/{question}", [QuestionController::class, "delete"]);
+
 
 Broadcast::routes([
     "middleware" => ["auth:sanctum"],
