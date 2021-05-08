@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Quiz\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Quiz\Helpers\Friendable;
 
 /**
  * @property int $id
@@ -23,6 +25,7 @@ class User extends Authenticatable
     use HasFactory;
     use HasApiTokens;
     use Notifiable;
+    use Friendable;
 
     protected $guarded = [];
 
@@ -47,5 +50,11 @@ class User extends Authenticatable
     public function receivesBroadcastNotificationsOn(): string
     {
         return "notifications.{$this->id}";
+    }
+
+    public function scopeSearch(Builder $query, string $search): Builder
+    {
+        return $query->where("name", "LIKE", "%{$search}%")
+            ->orWhere("email", "LIKE", "%{$search}%");
     }
 }

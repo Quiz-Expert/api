@@ -18,7 +18,7 @@ class QuestionController extends Controller
 {
     public function index(Request $request): ResourceCollection
     {
-        $questionQuery = Question::query();
+        $questionQuery = Question::query()->with("category");
 
         if ($request->has("category")) {
             $questionQuery->where("category_id", $request->get("category"));

@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace Quiz\Http\Controllers;
 
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
 use Quiz\Http\Requests\CategoryRequest;
 use Quiz\Http\Resources\Category\CategoryCollection;
 use Quiz\Http\Resources\Category\CategoryResource;
+use Quiz\Http\Resources\Category\SimpleCategoryResource;
 use Quiz\Http\Resources\PaginatedCollection;
 use Quiz\Models\Category;
 
@@ -20,6 +23,20 @@ class CategoryController extends Controller
         $categories = Category::query()->paginate();
 
         return new CategoryCollection($categories);
+    }
+
+    public function all(Request $request): ResourceCollection
+    {
+        $search = $request->get("search");
+
+        $categoriesQuery = Category::query()
+            ->select(["id", "name"]);
+
+        if ($search !== null) {
+            $categoriesQuery->search($search);
+        }
+
+        return SimpleCategoryResource::collection($categoriesQuery->get());
     }
 
     public function store(CategoryRequest $request): JsonResource

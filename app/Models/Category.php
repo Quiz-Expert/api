@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Quiz\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -35,5 +36,10 @@ class Category extends Model
     public function getIconUrlAttribute(): string
     {
         return asset(static::UPLOAD_DIRECTORY . "/" . $this->icon);
+    }
+
+    public function scopeSearch(Builder $query, string $search): Builder
+    {
+        return $query->where("name", "LIKE", "%{$search}%");
     }
 }
