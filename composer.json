@@ -13,13 +13,13 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
         "laravel/sanctum": "^2.10",
+        "fakerphp/faker": "^1.9.1",
         "laravel/tinker": "^2.5",
         "pusher/pusher-php-server": "^5.0"
     },
     "require-dev": {
         "blumilksoftware/codestyle": "^0.1.0",
         "facade/ignition": "^2.5",
-        "fakerphp/faker": "^1.9.1",
         "laravel/telescope": "^4.4",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
