@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
 use Quiz\Http\Requests\StoreFriendRequest;
-use Quiz\Http\Resources\FriendRequest\IncomingFriendRequest;
+use Quiz\Http\Resources\FriendRequest\GameInviteResource;
 use Quiz\Http\Resources\FriendRequest\SentFriendRequest;
 use Quiz\Http\Resources\User\UserCollection;
 use Quiz\Models\User;
@@ -38,7 +38,7 @@ class FriendController extends Controller
     {
         $incomingFriendRequests = $request->user()->incomingFriendRequests;
 
-        return IncomingFriendRequest::collection($incomingFriendRequests);
+        return GameInviteResource::collection($incomingFriendRequests);
     }
 
     public function createFriendRequest(StoreFriendRequest $request): Response

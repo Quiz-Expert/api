@@ -5,18 +5,23 @@ declare(strict_types=1);
 namespace Tests\Feature\Question;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
 use Quiz\Models\Question;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 use Tests\Traits\CreatesCategories;
+use Tests\Traits\CreatesUsers;
 
 class CreateQuestionTest extends TestCase
 {
     use RefreshDatabase;
     use CreatesCategories;
+    use CreatesUsers;
 
     public function testUserCanCreateQuestionWithProperData(): void
     {
+        Sanctum::actingAs($this->createUser());
+
         $category = $this->createCategory();
 
         $response = $this->post("questions", [
@@ -34,6 +39,8 @@ class CreateQuestionTest extends TestCase
 
     public function testUserCannotCreateQuestionWithValidationErrors(): void
     {
+        Sanctum::actingAs($this->createUser());
+
         $category = $this->createCategory();
 
         $response = $this->post("questions", [
@@ -50,6 +57,8 @@ class CreateQuestionTest extends TestCase
 
     public function testUserCannotCreateQuestionForNonExistingCategory(): void
     {
+        Sanctum::actingAs($this->createUser());
+
         $nonExistingCategoryId = 156;
 
         $response = $this->post("questions", [

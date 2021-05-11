@@ -31,7 +31,7 @@ class QuestionController extends Controller
     {
         $question = Question::query()->create($request->getData());
 
-        return new QuestionResource($question->load("category"));
+        return new QuestionResource($question);
     }
 
     public function show(Question $question): JsonResource

@@ -19,7 +19,7 @@ class QuestionResource extends JsonResource
             "answer_c" => $this->answer_c,
             "answer_d" => $this->answer_d,
             "good_answer" => $this->good_answer,
-            "category" => new CategoryResource($this->whenLoaded("category")),
+            "category" => new CategoryResource($this->category),
         ];
     }
 }

@@ -18,10 +18,10 @@ class CloseMistakeTest extends TestCase
 
     public function testUserCanCloseMistake(): void
     {
+        $this->withoutNotifications();
+
         $user = $this->createUser();
-        $mistake = $this->createMistake([
-            "is_active" => false,
-        ]);
+        $mistake = $this->createMistake();
 
         Sanctum::actingAs($user);
 
@@ -32,6 +32,8 @@ class CloseMistakeTest extends TestCase
 
     public function testUserCannotCloseMistakeIfItDoesntExist(): void
     {
+        $this->withoutNotifications();
+
         $user = $this->createUser();
         $nonExistingId = 1234;
 

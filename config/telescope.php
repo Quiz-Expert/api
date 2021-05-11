@@ -37,7 +37,7 @@ return [
         Authorize::class,
     ],
     "only_paths" => [],
-    "ignore_paths" => [],
+    "ignore_paths" => ["icons/*"],
     "ignore_commands" => [
     ],
     "watchers" => [

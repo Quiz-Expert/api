@@ -18,6 +18,8 @@ class RejectSuggestionTest extends TestCase
 
     public function testUserCanRejectSuggestion(): void
     {
+        $this->withoutNotifications();
+
         $user = $this->createUser();
         $suggestion = $this->createSuggestion();
 
@@ -30,6 +32,8 @@ class RejectSuggestionTest extends TestCase
 
     public function testUserCannotRejectSuggestionIfItDoesntExist(): void
     {
+        $this->withoutNotifications();
+
         $user = $this->createUser();
         $nonExistingId = 1234;
 

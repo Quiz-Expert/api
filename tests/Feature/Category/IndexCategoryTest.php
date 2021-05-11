@@ -5,16 +5,21 @@ declare(strict_types=1);
 namespace Tests\Feature\Category;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 use Tests\Traits\CreatesCategories;
+use Tests\Traits\CreatesUsers;
 
 class IndexCategoryTest extends TestCase
 {
     use RefreshDatabase;
     use CreatesCategories;
+    use CreatesUsers;
 
     public function testUserCanListCategories(): void
     {
+        Sanctum::actingAs($this->createUser());
+
         $count = 10;
         $this->createCategories($count);
 
@@ -26,6 +31,8 @@ class IndexCategoryTest extends TestCase
 
     public function testResponseHasPaginationData(): void
     {
+        Sanctum::actingAs($this->createUser());
+
         $response = $this->get("categories");
 
         $response->assertSuccessful();
@@ -43,6 +50,8 @@ class IndexCategoryTest extends TestCase
 
     public function testUserCanListCategoriesWithPageParameter(): void
     {
+        Sanctum::actingAs($this->createUser());
+
         $page = 2;
         $this->createCategories(10);
 

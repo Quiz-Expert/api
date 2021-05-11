@@ -19,6 +19,8 @@ class AcceptSuggestionTest extends TestCase
 
     public function testUserCanAcceptSuggestion(): void
     {
+        $this->withoutNotifications();
+
         $user = $this->createUser();
         $suggestion = $this->createSuggestion([
             "status" => Suggestion::STATUS_PENDING,
@@ -34,6 +36,8 @@ class AcceptSuggestionTest extends TestCase
 
     public function testUserCannotAcceptSuggestionIfItDoesntExist(): void
     {
+        $this->withoutNotifications();
+
         $user = $this->createUser();
         $nonExistingId = 1234;
 

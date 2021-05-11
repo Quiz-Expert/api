@@ -5,18 +5,23 @@ declare(strict_types=1);
 namespace Tests\Feature\Question;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
 use Quiz\Models\Question;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 use Tests\Traits\CreatesQuestions;
+use Tests\Traits\CreatesUsers;
 
 class UpdateQuestionTest extends TestCase
 {
     use RefreshDatabase;
     use CreatesQuestions;
+    use CreatesUsers;
 
     public function testUserCanUpdateQuestionWithProperData(): void
     {
+        Sanctum::actingAs($this->createUser());
+
         $question = $this->createQuestion();
 
         $response = $this->put("questions/{$question->id}", [
@@ -34,6 +39,8 @@ class UpdateQuestionTest extends TestCase
 
     public function testUserCannotUpdateQuestionIfItDoesntExist(): void
     {
+        Sanctum::actingAs($this->createUser());
+
         $nonExistingId = 1234;
 
         $response = $this->put("questions/${nonExistingId}", [
@@ -51,6 +58,8 @@ class UpdateQuestionTest extends TestCase
 
     public function testUserCannotUpdateQuestionWithValidationErrors(): void
     {
+        Sanctum::actingAs($this->createUser());
+
         $question = $this->createQuestion();
 
         $response = $this->put("questions/{$question->id}", [
