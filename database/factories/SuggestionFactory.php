@@ -20,7 +20,7 @@ class SuggestionFactory extends Factory
             "answer_b" => $this->faker->sentence,
             "answer_c" => $this->faker->sentence,
             "answer_d" => $this->faker->sentence,
-            "status" => $this->faker->randomElement(Suggestion::statutes()),
+            "status" => Suggestion::STATUS_PENDING,
             "good_answer" => $this->faker->randomElement(Question::possibleAnswers()),
         ];
     }

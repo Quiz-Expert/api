@@ -5,17 +5,22 @@ declare(strict_types=1);
 namespace Tests\Feature\Category;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 use Tests\Traits\CreatesCategories;
+use Tests\Traits\CreatesUsers;
 
 class UpdateCategoryTest extends TestCase
 {
     use RefreshDatabase;
     use CreatesCategories;
+    use CreatesUsers;
 
     public function testUserCanUpdateCategoryWithProperData(): void
     {
+        Sanctum::actingAs($this->createUser());
+
         $category = $this->createCategory();
 
         $response = $this->put("categories/{$category->id}", [
@@ -29,6 +34,8 @@ class UpdateCategoryTest extends TestCase
 
     public function testUserCannotUpdateCategoryIfItDoesntExist(): void
     {
+        Sanctum::actingAs($this->createUser());
+
         $nonExistingId = 1234;
 
         $response = $this->put("categories/${nonExistingId}", [
@@ -42,6 +49,8 @@ class UpdateCategoryTest extends TestCase
 
     public function testUserCannotUpdateCategoryWithValidationErrors(): void
     {
+        Sanctum::actingAs($this->createUser());
+
         $category = $this->createCategory();
 
         $response = $this->put("categories/{$category->id}", [

@@ -15,7 +15,7 @@ class MistakeFactory extends Factory
     {
         return [
             "text" => $this->faker->paragraph,
-            "is_active" => $this->faker->boolean(),
+            "is_active" => true,
         ];
     }
 }

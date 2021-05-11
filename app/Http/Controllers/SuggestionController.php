@@ -13,6 +13,8 @@ use Quiz\Http\Resources\Suggestion\SuggestionCollection;
 use Quiz\Http\Resources\Suggestion\SuggestionResource;
 use Quiz\Models\Question;
 use Quiz\Models\Suggestion;
+use Quiz\Notifications\SuggestionAccepted;
+use Quiz\Notifications\SuggestionRejected;
 
 class SuggestionController extends Controller
 {
@@ -47,10 +49,12 @@ class SuggestionController extends Controller
 
     public function accept(Suggestion $suggestion): Response
     {
-        if (!$suggestion->isAccepted()) {
+        if ($suggestion->isPending()) {
             $suggestion->accept();
 
             Question::createFromSuggestion($suggestion);
+
+            $suggestion->user->notify(new SuggestionAccepted($suggestion));
         }
 
         return response()->noContent();
@@ -58,7 +62,11 @@ class SuggestionController extends Controller
 
     public function reject(Suggestion $suggestion): Response
     {
-        $suggestion->reject();
+        if ($suggestion->isPending()) {
+            $suggestion->reject();
+
+            $suggestion->user->notify(new SuggestionRejected($suggestion));
+        }
 
         return response()->noContent();
     }

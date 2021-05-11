@@ -11,6 +11,7 @@ use Quiz\Http\Requests\MistakeRequest;
 use Quiz\Http\Resources\Mistake\MistakeCollection;
 use Quiz\Http\Resources\Mistake\MistakeResource;
 use Quiz\Models\Mistake;
+use Quiz\Notifications\MistakeClosed;
 
 class MistakeController extends Controller
 {
@@ -41,6 +42,8 @@ class MistakeController extends Controller
     {
         if ($mistake->is_active) {
             $mistake->close();
+
+            $mistake->user->notify(new MistakeClosed($mistake));
         }
 
         return response()->noContent();

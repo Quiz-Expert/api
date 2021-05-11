@@ -23,6 +23,15 @@ class NotificationController extends Controller
         return new NotificationCollection($notifications);
     }
 
+    public function unread(Request $request): ResourceCollection
+    {
+        $notifications = $request->user()
+            ->unreadNotifications()
+            ->paginate();
+
+        return new NotificationCollection($notifications);
+    }
+
     public function unreadCount(Request $request): JsonResponse
     {
         return response()->json([
